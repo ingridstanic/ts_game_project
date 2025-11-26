@@ -1,35 +1,35 @@
 import type { Game } from "./models/Game";
 
 export const createHTML = (games: Game[]) => {
-    const gameContainer = document.getElementById("gameSection");
+  const gameContainer = document.getElementById("gameContainer");
 
-    if(gameContainer) {
-        gameContainer.innerHTML = "";
+  if (gameContainer) {
+    gameContainer.innerHTML = "";
+  }
+
+  games.forEach((game) => {
+    const gameCard = document.createElement("div");
+    const name = document.createElement("h2");
+    const year = document.createElement("h3");
+    const genre = document.createElement("p");
+    const imgContainer = document.createElement("div");
+    const img = document.createElement("img");
+
+    name.innerHTML = game.name;
+
+    if (game.year !== null) {
+      year.innerHTML = game.year.toString();
     }
+    genre.innerHTML = game.genre;
+    img.src = game.image;
+    img.alt = game.name;
 
-    games.forEach((game) => {
-        const gameCard = document.createElement("div");
-        const name = document.createElement("h2");
-        const year = document.createElement("h3");
-        const genre = document.createElement("p");
-        const imgContainer = document.createElement("div");
-        const img = document.createElement("img");
+    imgContainer.appendChild(img);
+    gameCard.appendChild(name);
+    gameCard.appendChild(year);
+    gameCard.appendChild(genre);
+    gameCard.appendChild(imgContainer);
 
-        name.innerHTML = game.name;
-        year.innerHTML = game.year.toString();
-        genre.innerHTML = game.genre;
-        img.src = game.image;
-        img.alt = game.name;
-
-        imgContainer.appendChild(img);
-        gameCard.appendChild(name);
-        gameCard.appendChild(year);
-        gameCard.appendChild(genre);
-
-        gameContainer?.appendChild(gameCard);
-    })
-
-    
-
-
-}
+    gameContainer?.appendChild(gameCard);
+  });
+};

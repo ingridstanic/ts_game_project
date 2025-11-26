@@ -11,12 +11,7 @@ searchGameForm?.addEventListener("submit", async (e) => {
 
   if (gameInput) {
     const search = gameInput.value;
-
-    if (search.length !== 0) {
-      const games = await getGame();
-      createHTML(games);
-    } else {
-      console.log("Ange en sökning...");
-    }
+    const games = await getGame(search);
+    createHTML(games);
   }
 });
